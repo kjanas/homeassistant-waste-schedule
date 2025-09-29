@@ -1,0 +1,7 @@
+{
+  "name": "Waste schedule",
+  "render_readme": false,
+  "zip_release": false,
+  "country": "PL",
+  "homeassistant": "2025.9.4"
+}
