@@ -2,10 +2,8 @@ import aiohttp
 import async_timeout
 import voluptuous as vol
 from homeassistant import config_entries
-from .const import DOMAIN
 from bs4 import BeautifulSoup
-
-SCHEDULE_BASE_URL = "https://cloud.fxsystems.com.pl/OdbiorySmieci/HarmonogramOnline.dll"
+from .const import DOMAIN, SCHEDULE_BASE_URL
 
 async def fetch_municipalities():
     options = {}
@@ -37,18 +35,17 @@ async def fetch_streets(municipality_id):
             async with async_timeout.timeout(15):
                 async with session.get(url) as resp:
                     html = await resp.text()
-                    from bs4 import BeautifulSoup
                     soup = BeautifulSoup(html, "html.parser")
                     select = soup.find("select", id="selUlica")
                     if select:
                         for opt in select.find_all("option"):
                             text = opt.text.strip()
                             if text:
-                                options[text] = text  
+                                options[text] = text
     except Exception:
         options = {}
     if not options:
-        options = {"0": "No cities ot streets found"}
+        options = {"0": "No cities or streets found"}
     return options
 
 
@@ -72,7 +69,7 @@ class WasteScheduleConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             street_id = user_input.get("street_id")
             final_url = f"{SCHEDULE_BASE_URL}?gmina_id={municipality_id}&ulica={street_id}"
-            return self.async_create_entry(title=f"Waste Schedule {street_id}", data={"url": final_url})
+            return self.async_create_entry(title=f"Waste Schedule {street_id}", data={"url": final_url, "street": street_id})
 
         options = await fetch_streets(municipality_id)
         data_schema = vol.Schema({vol.Required("street_id"): vol.In(options)})

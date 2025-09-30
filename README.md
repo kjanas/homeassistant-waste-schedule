@@ -1,11 +1,5 @@
 # Waste schedule
-This set of sensors shows the nearest dates of waste collection for each waste fractions:
-- tires (opony)
-- bulk waste (odpady wielkogabarytowe)
-- mixed waste (zmieszane)
-- biodegradable (biodegradowalne)
-- metal and plastics (metale i tworzywa sztuczne)
-- paper and cardboard (papier i tektura)
+For given municipality (gmina) and street/city, integration fetches waste collection events and creates calendar for each waste type/fraction. It is also possible to setup multiple locations.
 
 To find this integration usable, your local goverment have to cooperate with author of "Kiedy śmieci" application.
 
