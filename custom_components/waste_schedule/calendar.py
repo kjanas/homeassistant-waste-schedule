@@ -1,20 +1,20 @@
 from homeassistant.components.calendar import CalendarEntity, CalendarEvent
 from homeassistant.util import dt as dt_util
 from datetime import timedelta
-from .const import ENTITY_NAMES, DOMAIN
+from .const import DOMAIN
 
 
 class WasteCalendar(CalendarEntity):
-    def __init__(self, coordinator, key: str, street: str, entry_id: str):
+    def __init__(self, coordinator, waste_type, street: str, entry_id: str):
         self.coordinator = coordinator
-        self.key = key
+        self.waste_type = waste_type
         self.street = street
-        self._attr_name = f"{ENTITY_NAMES.get(key, key)} - {street}"
-        self._attr_unique_id = f"{DOMAIN}_{entry_id}_{key}"
+        self._attr_name = f"{self.waste_type.name} - {street}"
+        self._attr_unique_id = f"{DOMAIN}_{entry_id}_{self.waste_type.key}"
 
     @property
     def event(self):
-        dates = self.coordinator.data.get(self.key) if self.coordinator.data else []
+        dates = self.coordinator.data.get(self.waste_type) if self.coordinator.data else []
         if not dates:
             return None
 
@@ -25,12 +25,12 @@ class WasteCalendar(CalendarEntity):
         return CalendarEvent(
             start=start,
             end=end,
-            summary=f"{ENTITY_NAMES.get(self.key, self.key)}",
+            summary=f"{self.waste_type.name}",
         )
 
     async def async_get_events(self, hass, start_date, end_date):
         result = []
-        dates = self.coordinator.data.get(self.key) if self.coordinator.data else []
+        dates = self.coordinator.data.get(self.waste_type) if self.coordinator.data else []
 
         for d in dates:
             start = dt_util.start_of_local_day(d)
@@ -40,7 +40,7 @@ class WasteCalendar(CalendarEntity):
                     CalendarEvent(
                         start=start,
                         end=end,
-                        summary=f"{ENTITY_NAMES.get(self.key, self.key)}",
+                        summary=f"{self.waste_type.name}",
                     )
                 )
 
@@ -53,8 +53,8 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
     entities = []
     if coordinator.data:
-        for key in coordinator.data.keys():
-            entities.append(WasteCalendar(coordinator, key, street, entry.entry_id))
+        for waste_type in coordinator.data.keys():
+            entities.append(WasteCalendar(coordinator, waste_type, street, entry.entry_id))
 
     if entities:
         async_add_entities(entities, True)
