@@ -2,6 +2,7 @@
   "name": "Waste schedule",
   "render_readme": true,
   "zip_release": true,
+  "filename": "waste_schedule.zip",
   "country": "PL",
   "homeassistant": "2025.9.4"
 }

@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "integration_type": "hub",
   "documentation": "https://github.com/kjanas/homeassistant-waste-schedule",
+  "issue_tracker": "https://github.com/kjanas/homeassistant-waste-schedule/issues",
   "requirements": ["beautifulsoup4", "aiohttp", "async_timeout"],
   "codeowners": ["@kjanas"],
   "config_flow": true,
