@@ -5,7 +5,7 @@ To find this integration usable, your local goverment have to cooperate with aut
 
 ## Installation
 ### Manual
-Download [wste_schedule](https://github.com/kjanas/homeassistant-waste-schedule/releases/latest/download/waste_schedule.zip) file and extract it to your `homeassistant/config/custom_components` directory:
+Download [waste_schedule](https://github.com/kjanas/homeassistant-waste-schedule/releases/latest/download/waste_schedule.zip) file and extract it to your `homeassistant/config/custom_components` directory:
 
 ```
 mkdir custom_components/waste_schedule
