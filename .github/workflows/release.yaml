@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  COMPONENT_NAME: tauron_amiplus
+  COMPONENT_NAME: waste_schedule
 
 jobs:
   release:

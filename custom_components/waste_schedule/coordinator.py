@@ -11,7 +11,6 @@ from .const import DOMAIN
 _LOGGER = logging.getLogger(__name__)
 SCAN_INTERVAL = timedelta(hours=12)
 
-
 class WasteDataCoordinator(DataUpdateCoordinator):
     def __init__(self, hass, url: str):
         self.url = url

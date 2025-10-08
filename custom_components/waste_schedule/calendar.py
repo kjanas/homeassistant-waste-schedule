@@ -2,7 +2,6 @@ from homeassistant.components.calendar import CalendarEntity, CalendarEvent
 from datetime import timedelta
 from .const import DOMAIN
 
-
 class WasteCalendar(CalendarEntity):
     def __init__(self, coordinator, waste_type, street: str, entry_id: str):
         self.coordinator = coordinator
@@ -38,7 +37,6 @@ class WasteCalendar(CalendarEntity):
                 )
 
         return result
-
 
 async def async_setup_entry(hass, entry, async_add_entities):
     coordinator = hass.data[DOMAIN][entry.entry_id]

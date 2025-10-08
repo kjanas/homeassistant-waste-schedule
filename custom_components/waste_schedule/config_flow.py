@@ -5,7 +5,6 @@ from homeassistant import config_entries
 from bs4 import BeautifulSoup
 from .const import DOMAIN, SCHEDULE_BASE_URL
 
-
 async def fetch_municipalities():
     try:
         async with aiohttp.ClientSession() as session:
@@ -23,7 +22,6 @@ async def fetch_municipalities():
                     }
     except Exception:
         return {}
-
 
 async def fetch_streets(municipality_id):
     try:
@@ -43,7 +41,6 @@ async def fetch_streets(municipality_id):
                     }
     except Exception:
         return {}
-
 
 class WasteScheduleConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
