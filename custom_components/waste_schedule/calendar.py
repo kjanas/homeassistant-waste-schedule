@@ -1,5 +1,4 @@
 from homeassistant.components.calendar import CalendarEntity, CalendarEvent
-from homeassistant.util import dt as dt_util
 from datetime import timedelta
 from .const import DOMAIN
 
@@ -17,14 +16,10 @@ class WasteCalendar(CalendarEntity):
         dates = self.coordinator.data.get(self.waste_type) if self.coordinator.data else []
         if not dates:
             return None
-
-        next_date = dates[0]
-        start = dt_util.start_of_local_day(next_date)
-        end = start + timedelta(days=1)
-
+        
         return CalendarEvent(
-            start=start,
-            end=end,
+            start=dates[0],
+            end=dates[0] + timedelta(days=1),
             summary=f"{self.waste_type.name}",
         )
 
@@ -32,14 +27,12 @@ class WasteCalendar(CalendarEntity):
         result = []
         dates = self.coordinator.data.get(self.waste_type) if self.coordinator.data else []
 
-        for d in dates:
-            start = dt_util.start_of_local_day(d)
-            end = start + timedelta(days=1) - timedelta(seconds=1)
-            if start_date <= start <= end_date:
+        for dt in dates:
+            if start_date.date() <= dt <= end_date.date():
                 result.append(
                     CalendarEvent(
-                        start=start,
-                        end=end,
+                        start=dt,
+                        end=dt + timedelta(days=1),
                         summary=f"{self.waste_type.name}",
                     )
                 )

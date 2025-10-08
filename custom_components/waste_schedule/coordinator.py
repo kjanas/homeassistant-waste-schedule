@@ -1,6 +1,6 @@
 import aiohttp
 import async_timeout
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 import logging
 import re
 from bs4 import BeautifulSoup
@@ -27,7 +27,7 @@ class WasteDataCoordinator(DataUpdateCoordinator):
                         html = await resp.text()
                         soup = BeautifulSoup(html, "html.parser")
                         today = datetime.today().date()
-                        dates_by_type: dict[WasteType, list[datetime]] = {}
+                        dates_by_type: dict[WasteType, list[date]] = {}
 
                         for card in soup.select("div.termin.card"):
                             date_el = card.select_one(".naglowek")
@@ -50,9 +50,9 @@ class WasteDataCoordinator(DataUpdateCoordinator):
 
                             yyyy, mm, dd = m.group(1).split("-")
                             
-                            dt = datetime(int(yyyy), int(mm), int(dd))
+                            dt = date(int(yyyy), int(mm), int(dd))
                             
-                            if dt.date() >= today:
+                            if dt >= today:
                                 dates_by_type[waste_type].append(dt)
 
                         return {
