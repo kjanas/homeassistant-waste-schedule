@@ -1,0 +1,33 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Harmonogram odbioru odpadów",
+        "description": "Wybierz województwo.",
+        "data": { "wojewodztwo": "Województwo" }
+      },
+      "powiat": {
+        "title": "Harmonogram odbioru odpadów",
+        "description": "Wybierz powiat.",
+        "data": { "powiat": "Powiat" }
+      },
+      "gmina": {
+        "title": "Harmonogram odbioru odpadów",
+        "description": "Wybierz gminę.",
+        "data": { "gmina": "Gmina" }
+      },
+      "ulica": {
+        "title": "Harmonogram odbioru odpadów",
+        "description": "Wybierz ulicę lub miejscowość.",
+        "data": { "ulica": "Ulica / miejscowość" }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nie udało się połączyć z serwisem harmonogramu.",
+      "no_options": "Brak pozycji dla tego wyboru."
+    },
+    "abort": {
+      "already_configured": "Ta lokalizacja jest już skonfigurowana."
+    }
+  }
+}

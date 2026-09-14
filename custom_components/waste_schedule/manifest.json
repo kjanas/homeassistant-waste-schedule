@@ -1,12 +1,16 @@
 {
   "domain": "waste_schedule",
   "name": "Waste Schedule",
-  "codeowners": ["@kjanas"],
+  "codeowners": [
+    "@kjanas"
+  ],
   "config_flow": true,
   "documentation": "https://github.com/kjanas/homeassistant-waste-schedule",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/kjanas/homeassistant-waste-schedule/issues",
-  "requirements": ["beautifulsoup4", "aiohttp", "async_timeout"],
-  "version": "1.0.0"
+  "requirements": [
+    "async_timeout"
+  ],
+  "version": "2.0.0"
 }

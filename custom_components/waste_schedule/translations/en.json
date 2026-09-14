@@ -1,0 +1,33 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Waste Schedule",
+        "description": "Select the voivodeship of the collection point.",
+        "data": { "wojewodztwo": "Voivodeship" }
+      },
+      "powiat": {
+        "title": "Waste Schedule",
+        "description": "Select the county.",
+        "data": { "powiat": "County" }
+      },
+      "gmina": {
+        "title": "Waste Schedule",
+        "description": "Select the municipality.",
+        "data": { "gmina": "Municipality" }
+      },
+      "ulica": {
+        "title": "Waste Schedule",
+        "description": "Select the street or locality.",
+        "data": { "ulica": "Street / locality" }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the schedule service.",
+      "no_options": "No entries available for this selection."
+    },
+    "abort": {
+      "already_configured": "This location is already configured."
+    }
+  }
+}
