@@ -1,6 +1,6 @@
 from homeassistant.components.calendar import CalendarEntity, CalendarEvent
 from datetime import timedelta
-from .const import DOMAIN
+from .const import CONF_ULICA, DOMAIN
 
 class WasteCalendar(CalendarEntity):
     def __init__(self, coordinator, waste_type, street: str, entry_id: str):
@@ -40,7 +40,7 @@ class WasteCalendar(CalendarEntity):
 
 async def async_setup_entry(hass, entry, async_add_entities):
     coordinator = hass.data[DOMAIN][entry.entry_id]
-    street = entry.data.get("street", "unknown")
+    street = entry.data[CONF_ULICA]
 
     entities = []
     if coordinator.data:
